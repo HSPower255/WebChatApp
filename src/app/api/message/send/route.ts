@@ -30,8 +30,8 @@ export async function POST(req: Request) {
             return new Response('Unauthorized', { status: 401 })
         }
 
-        const rawSender  = await (fetchRedis('get', `user:${session.user.id}`)) as string
-        const sender  = JSON.parse(rawSender) as User
+        const rawSender = await (fetchRedis('get', `user:${session.user.id}`)) as string
+        const sender = JSON.parse(rawSender) as User
 
         //If are friends
 
@@ -42,12 +42,12 @@ export async function POST(req: Request) {
             text,
             timestamp,
         }
-        
+
         const message = messageValidator.parse(messageData)
 
         //Notifications
-        pusherServer.trigger(toPusherKey(`chat:${chatId}`), 'incoming-message', message)
-        pusherServer.trigger(toPusherKey(`user:${friendId}:chats`), 'new_message', {
+        await pusherServer.trigger(toPusherKey(`chat:${chatId}`), 'incoming-message', message)
+        await pusherServer.trigger(toPusherKey(`user:${friendId}:chats`), 'new_message', {
             ...message,
             senderImg: sender.image,
             senderName: sender.name,
@@ -67,6 +67,6 @@ export async function POST(req: Request) {
             return new Response(error.message, { status: 500 })
         }
 
-        return new Response('Internal Server Error', {status: 500})
+        return new Response('Internal Server Error', { status: 500 })
     }
 }

@@ -15,6 +15,14 @@ export default function RootLayout({
 
   return (
     <html lang='en'>
+      <head>
+        <title>Chat App by Santiago Tourn</title>
+        <meta name="description" content=" " />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:image" content="ogimg.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link rel="icon" href="logo.png" />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>

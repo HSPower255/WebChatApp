@@ -54,7 +54,6 @@ export async function POST(req: Request) {
 
         })
 
-
         await db.zadd(`chat:${chatId}:messages`, {
             score: timestamp,
             member: JSON.stringify(message),
@@ -66,7 +65,6 @@ export async function POST(req: Request) {
         if (error instanceof Error) {
             return new Response(error.message, { status: 500 })
         }
-
         return new Response('Internal Server Error', { status: 500 })
     }
 }

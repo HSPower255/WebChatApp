@@ -1,5 +1,3 @@
-//d. ts files are declaration files that contain only type information.
-
 interface User {
     name: string
     email: string

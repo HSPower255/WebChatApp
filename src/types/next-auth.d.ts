@@ -1,4 +1,3 @@
-//d. ts files are declaration files that contain only type information.
 import type { Session, User } from 'next-auth'
 import type { JWT } from 'next-auth/jwt'
 
